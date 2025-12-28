@@ -1,9 +1,31 @@
-console.log('Hello World!');
-   document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const nom = document.getElementById("nom").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-      const mailto = `mailto: papedjibrilndiaye@07gmail.com ?subject=Message de ${nom}&body=Nom: ${nom}%0AEmail: ${email}%0AMessage: ${message}`;
-      window.location.href = mailto;
-    });
+console.log("QUANTUMBYTE prêt 🚀");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nom = form.querySelector('input[name="nom"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    if (!nom || !email || !message) {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Message de ${nom}`);
+    const body = encodeURIComponent(
+      `Nom : ${nom}\nEmail : ${email}\n\nMessage :\n${message}`
+    );
+
+    const mailto = `mailto:papedjibrilndiaye07@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailto;
+    form.reset();
+  });
+});
+
